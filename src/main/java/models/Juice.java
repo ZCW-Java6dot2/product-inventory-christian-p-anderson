@@ -7,13 +7,21 @@ public class Juice {
     private int qty;
     private float price;
 
-//    public Juice(int id, String name, String brand, int qty, float price) {
-//        this.id = id;
-//        this.name = name;
-//        this.brand = brand;
-//        this.qty = qty;
-//        this.price = price;
-//    }
+    public Juice(int id, String name, String brand, int qty, float price) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.qty = qty;
+        this.price = price;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return this.name;
