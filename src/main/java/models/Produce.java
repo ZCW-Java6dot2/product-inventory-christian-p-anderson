@@ -6,6 +6,10 @@ public class Produce {
     private int qty;
     private float price;
 
+    public Produce() {
+
+    }
+
     public Produce(int id, String name, int qty, float price) {
         this.id = id;
         this.name = name;
