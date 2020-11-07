@@ -2,6 +2,7 @@ import io.Console;
 import models.Produce;
 import services.ProduceService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -9,6 +10,8 @@ public class App {
 
     private ProduceService produceService = new ProduceService();
     private Produce produce = new Produce();
+
+    Scanner scan = new Scanner(System.in);
 
     public static void main(String... args) {
         App application = new App();
@@ -36,35 +39,41 @@ public class App {
 
             menuInput = Console.getIntegerInput("Please make your selection: ");
 
-            switch (menuInput) {
+            try {
+                switch (menuInput) {
 
-                case 1:
-                    nameInput = Console.getStringInput("Enter the name of the produce item: ");
-                    qtyInput = Console.getIntegerInput("Enter the quantity of the produce item: ");
-                    priceInput = Console.getFloatInput("Enter the price per each produce item: ");
+                    case 1:
+                        nameInput = Console.getStringInput("Enter the name of the produce item: ");
+                        qtyInput = Console.getIntegerInput("Enter the quantity of the produce item: ");
+                        priceInput = Console.getFloatInput("Enter the price per each produce item: ");
 
-                    produceService.create(nameInput, qtyInput, priceInput);
+                        produceService.create(nameInput, qtyInput, priceInput);
 
-//                    System.out.println("Item entered: \n");
-//                    lastId = produceService.getLastNextId();
-//                    System.out.print(produceService.findProduce(lastId).toString());
+                        break;
 
-                    break;
+                    case 2:
+                        idInput = Console.getIntegerInput("Enter the produce id of the item you want to remove from inventory: ");
 
-                case 2:
-                    idInput = Console.getIntegerInput("Enter the produce id of the item you want to remove from inventory: ");
+                        produceService.delete(idInput);
 
-                    produceService.delete(idInput);
+                        break;
 
-                    break;
+                    case 3:
+                        System.out.println("Here is a list of all your items in the produce inventory database");
 
-                case 3:
-                    System.out.println("Here is a list of all your items in the produce inventory database");
+                        Produce[] all = produceService.findAll();
 
-                    String all = produceService.findAll().toString();
+                        System.out.print(all);
 
-                    System.out.print(all);
+                    case 4:
+                        keepOn = false;
+                        System.out.println("Exiting inventory management application");
+                }
+            } catch (InputMismatchException e) {
+                scan.next();
+                System.out.println("\n Invalid selection. Please choose again.");
             }
+
 
         }
 

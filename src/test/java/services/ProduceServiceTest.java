@@ -56,8 +56,7 @@ public class ProduceServiceTest {
         testInventory.add(onionObj);
         testInventory.add(bananaObj);
 
-//        Produce[] expected = (Produce[]) testInventory.toArray();
-        Produce[] expected = testInventory.toArray(new Produce[0]);
+        Produce[] expected = testInventory.toArray(new Produce[testInventory.size()]);
         Produce[] actual = testObj.findAll();
 
         Assertions.assertArrayEquals(expected, actual);

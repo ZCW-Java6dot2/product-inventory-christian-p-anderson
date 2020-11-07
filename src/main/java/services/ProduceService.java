@@ -28,7 +28,8 @@ public class ProduceService {
 
 
     public Produce[] findAll() {
-        return (Produce[]) this.inventory.toArray();
+        Produce[] produceItems = this.inventory.toArray(new Produce[this.inventory.size()]);
+        return produceItems;
     }
 
 
@@ -50,3 +51,5 @@ public class ProduceService {
     }
 
 }
+
+
